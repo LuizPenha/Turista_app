@@ -35,4 +35,6 @@ public class Evento {
     public void setLngg(double lngg) {
         this.lngg = lngg;
     }
+
 }
+
