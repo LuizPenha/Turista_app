@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CDDLDemo</string>
+    <string name="send">Send</string>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>
