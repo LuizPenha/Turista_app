@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: ./app/libs/microbroker-1.1-release.aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/51ddba4538c957bffe6b1afcca3fa30d/transformed/microbroker-1.1-release/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/51ddba4538c957bffe6b1afcca3fa30d/transformed/microbroker-1.1-release/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/51ddba4538c957bffe6b1afcca3fa30d/transformed/microbroker-1.1-release/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

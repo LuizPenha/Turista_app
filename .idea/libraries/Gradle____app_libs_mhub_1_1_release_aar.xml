@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: ./app/libs/mhub-1.1-release.aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/17a61637bcadcf6353d5361bb49f8ff9/transformed/mhub-1.1-release/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/17a61637bcadcf6353d5361bb49f8ff9/transformed/mhub-1.1-release/jars/libs/BioHarnessBT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/17a61637bcadcf6353d5361bb49f8ff9/transformed/mhub-1.1-release/jars/libs/ClientLib.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/17a61637bcadcf6353d5361bb49f8ff9/transformed/mhub-1.1-release/jars/libs/HxMBT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/17a61637bcadcf6353d5361bb49f8ff9/transformed/mhub-1.1-release/jars/libs/asper-4.9.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/17a61637bcadcf6353d5361bb49f8ff9/transformed/mhub-1.1-release/jars/libs/lib.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/17a61637bcadcf6353d5361bb49f8ff9/transformed/mhub-1.1-release/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/17a61637bcadcf6353d5361bb49f8ff9/transformed/mhub-1.1-release/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

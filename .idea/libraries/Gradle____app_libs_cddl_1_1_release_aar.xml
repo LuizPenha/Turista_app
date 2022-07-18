@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: ./app/libs/cddl-1.1-release.aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dc464e5987339d064f25d0a951c59185/transformed/cddl-1.1-release/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dc464e5987339d064f25d0a951c59185/transformed/cddl-1.1-release/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dc464e5987339d064f25d0a951c59185/transformed/cddl-1.1-release/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: ./app/libs/security-service-1.1-release.aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/baa8e2e943a5979496d851310ce8ba7e/transformed/security-service-1.1-release/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/baa8e2e943a5979496d851310ce8ba7e/transformed/security-service-1.1-release/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/baa8e2e943a5979496d851310ce8ba7e/transformed/security-service-1.1-release/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

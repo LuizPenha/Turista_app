@@ -6,6 +6,7 @@ import static android.os.Build.VERSION.SDK_INT;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -58,7 +59,7 @@ import br.ufma.lsdi.cddl.pubsub.Subscriber;
 import br.ufma.lsdi.cddl.pubsub.SubscriberFactory;
 import br.ufma.lsdi.databinding.ActivityMapsBinding;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     CDDL cddl; //instancia do CDDL
 
@@ -75,7 +76,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private View sendButton;
 
     private GoogleMap mMap, mMap2;
-    private ActivityMapsBinding binding;
 
     private Double latt = -2.48754;
     private Double lngt = -44.29282;
@@ -85,15 +85,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_maps);
 
-        binding = ActivityMapsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+//        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        //    appGuia();
+
+//        appGuia();
         appTur();
         configCEP();
 
@@ -138,7 +139,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //inicia o CDDL e captura sua localização a partir do dispositivo
         cddl = CDDL.getInstance(); //obtem uma instancia do CDDL
         cddl.setConnection(con_int); //estabelece a conexão com o microbroker MQTT
-        cddl.setContext(this); //activity atual iniciando a CDDL
+        cddl.setContext(getApplicationContext()); //activity atual iniciando a CDDL
         cddl.startService(); //inicia o serviço
         cddl.startLocationSensor(); //captura a localização do dispositivo por meio do sensor
         cddl.startCommunicationTechnology(CDDL.INTERNAL_TECHNOLOGY_ID); //inicia a tecnologia de
@@ -210,18 +211,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         con_int.connect();
 
         //inicia a conexão externa com o HiveMQ para subscrever dados do Guia
-        con_ext = ConnectionFactory.createConnection();
-        con_ext.setClientId("turista1");
-        con_ext.setHost("broker.hivemq.com");
-        con_ext.connect();
+//        con_ext = ConnectionFactory.createConnection();
+//        con_ext.setClientId("turista1");
+//        con_ext.setHost("broker.hivemq.com");
+//        con_ext.connect();
 
         //inicia o CDDL e captura sua localização
         cddl = CDDL.getInstance();
         cddl.setConnection(con_int);
-        cddl.setContext(this);
+        cddl.setContext(getApplicationContext());
         cddl.startService();
         cddl.startLocationSensor(); //capturar a localização do dispositivo
-        cddl.startCommunicationTechnology(CDDL.INTERNAL_TECHNOLOGY_ID);
+//        cddl.startCommunicationTechnology(CDDL.INTERNAL_TECHNOLOGY_ID);
 
         //recebe seus dados de localização a partir do dispositivo
         Subscriber sub = SubscriberFactory.createSubscriber();
@@ -233,35 +234,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (message.getServiceName().equals("Location")) {
                     latt = message.getSourceLocationLatitude();
                     lngt = message.getSourceLocationLongitude();
-                    mMap.clear();
+//                    mMap.clear();
 
                     Log.d("_MAIN", " ------- GEOLOCALIZAÇÃO DO TURISTA -------  " + latt + "  " + lngt);
                 }
             }
         });
 
-        //turista recebe os dados de geolocalização do Guia
-        Subscriber sub2 = SubscriberFactory.createSubscriber();
-        sub2.addConnection(con_ext);
-        sub2.subscribeServiceByName("bando"); //subscreve o serviço 'bando' do Guia no broker externo para receber as coord.
-        sub2.setSubscriberListener(new ISubscriberListener() {
-            @Override
-            public void onMessageArrived(Message message) {
-                if (message.getServiceName().equals("bando")) {
-                    String loc_guia = message.getServiceByteArray().toString();
-                    String [] coordguia = loc_guia.split("_"); //quebra a string no _
-                    latg = Double.parseDouble(coordguia[0]);
-                    lngg = Double.parseDouble(coordguia[1]);
-                    //verificar quebra na primeira execução
-                    ep.getEPRuntime().sendEvent(new Evento(latt, lngt, latg, lngg));
-
-                    //implementar o marker com a camera
-
-                    //MapsActivity teste = new MapsActivity(latt, lngt, latg, lngg);
-                    Log.d("_MAIN", "Dados de geolocalizacao do guia recebidos pelo turista: " + loc_guia);
-                }
-            }
-        });
+//        //turista recebe os dados de geolocalização do Guia
+//        Subscriber sub2 = SubscriberFactory.createSubscriber();
+//        sub2.addConnection(con_ext);
+//        sub2.subscribeServiceByName("bando"); //subscreve o serviço 'bando' do Guia no broker externo para receber as coord.
+//        sub2.setSubscriberListener(new ISubscriberListener() {
+//            @Override
+//            public void onMessageArrived(Message message) {
+//                if (message.getServiceName().equals("bando")) {
+//                    String loc_guia = message.getServiceByteArray().toString();
+//                    String [] coordguia = loc_guia.split("_"); //quebra a string no _
+//                    latg = Double.parseDouble(coordguia[0]);
+//                    lngg = Double.parseDouble(coordguia[1]);
+//                    //verificar quebra na primeira execução
+//                    ep.getEPRuntime().sendEvent(new Evento(latt, lngt, latg, lngg));
+//
+//                    //implementar o marker com a camera
+//
+//                    //MapsActivity teste = new MapsActivity(latt, lngt, latg, lngg);
+//                    Log.d("_MAIN", "Dados de geolocalizacao do guia recebidos pelo turista: " + loc_guia);
+//                }
+//            }
+//        });
     }
 
     //Msg de alerta do turista para o Guia caso esteja fora do bando
@@ -304,23 +305,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private IConnectionListener connectionListener = new IConnectionListener() {
         @Override
         public void onConnectionEstablished() {
-            messageTextView.setText("Conexão estabelecida.");
+//            messageTextView.setText("Conexão estabelecida.");
             Log.d("app bandoTur","Conexão estabelecida.");
         }
 
         @Override
         public void onConnectionEstablishmentFailed() {
-            messageTextView.setText("Falha na conexão.");
+//            messageTextView.setText("Falha na conexão.");
         }
 
         @Override
         public void onConnectionLost() {
-            messageTextView.setText("Conexão perdida.");
+
+//            messageTextView.setText("Conexão perdida.");
         }
 
         @Override
         public void onDisconnectedNormally() {
-            messageTextView.setText("Uma desconexão normal ocorreu.");
+//            messageTextView.setText("Uma desconexão normal ocorreu.");
         }
 
     };
